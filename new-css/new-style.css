@@ -136,6 +136,7 @@
 }
 
 .guarantee-partners {
+	padding-right: 70px;
 }
 
 .guarantee-partners__title {
@@ -178,6 +179,7 @@
 	}
 
 	.guarantee-partners {
+		padding-right: 0;
 		max-width: 660px;
 		margin: 0 auto;
 	}

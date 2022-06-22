@@ -216,6 +216,10 @@
 	.guarantee-block__list {
 		grid-template-columns: 1fr;
 	}
+
+	.guarantee-block::before {
+		content: none;
+	}
 }
 
 .secvice-catalog {

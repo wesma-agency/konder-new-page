@@ -613,7 +613,8 @@ button[type="submit"].form-service-price__btn {
 
 @media (max-width: 768px) {
 	.tab-list-price__controls {
-		flex-direction: column;
+		display: grid;
+		grid-auto-rows: 1fr;
 	}
 
 	.tab-list-price__btn {

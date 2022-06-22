@@ -165,6 +165,13 @@
 }
 
 .guarantee-partners__item {
+	cursor: pointer;
+	opacity: 0.5;
+	transition: all 0.3s ease;
+}
+
+.guarantee-partners__item:hover {
+	opacity: 1;
 }
 
 @media (max-width: 1170px) {

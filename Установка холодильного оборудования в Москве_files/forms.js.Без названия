@@ -1,0 +1,150 @@
+document.addEventListener('DOMContentLoaded', function (event) {
+
+    // === событие
+    document.addEventListener('click', function (event) {
+
+        // === элемент для запуска модалки
+        let delegateSelector = '[data-entity="modal"]';
+
+
+        if (event.target.closest(delegateSelector)) {
+            event.stopPropagation();
+            event.preventDefault();
+
+            let elemetn = event.target.closest(delegateSelector);
+            popupHandler(elemetn);
+        }
+    });
+
+    // === обработчик
+    let popupHandler = function (element) {
+
+        // === показать loader
+        BX.showWait();
+
+
+        // === считывание data-атрибутов
+        let ajax_file_path = element.getAttribute('data-wf-file-path');
+        let modal_class = element.getAttribute('data-wf-class');
+        let form_type = modal_class;
+
+        let load_css = element.getAttribute('data-load-css');
+
+        let clientDom = document.querySelector('body');
+
+        // === предзагрузка стилей для модалки
+        if (load_css.length > 0 && clientDom !== 'null') {
+            let chunkCss = clientDom.querySelector('link[data-chunk="modal-css"]');
+            if (chunkCss === null) {
+                let headDom = clientDom.querySelector('head');
+                let chunkCss = `<link data-chunk="modal-css" href="${load_css}" rel="stylesheet">`;
+                clientDom.insertAdjacentHTML('beforeend', chunkCss);
+            }
+        }
+
+
+        // === определение праметров
+        let ajax_send_data = {
+            FORM_TYPE: form_type
+        };
+
+        // === ajax запрос
+        BX.ajax({
+            // === URL запроса
+            url: ajax_file_path,
+            // === метод запроса
+            method: 'POST',
+            // === POST-данные для отправки
+            data: ajax_send_data,
+            // === данные какого типа предполагаются в ответе html|json|script
+            dataType: 'html',
+            // === таймаут запроса в секундах
+            // timeout: 60,
+            // === запрос асинхронный?
+            async: true,
+            // === нужно ли сразу обрабатывать данные?
+            processData: true,
+            // === нужно ли выполнять все найденные скрипты перед тем, как отдавать сожеримое обработчику или только те, в тэге которых присутствует атрибут bxrunfirst
+            scriptsRunFirst: false,
+            // === нужно ли эмулировать событие window.onload для загруженных скриптов
+            emulateOnload: false,
+            // === отправить ли запрос сразу или он будет запущен вручную
+            start: true,
+            // === в случае значения false к параметру URL будет добавляться случайный кусок, чтобы избежать браузерного кэширования
+            cache: false,
+
+
+            // === функция-обработчик результата
+            onsuccess: function (html) {
+
+                // === скрыть лоадер
+                BX.closeWait();
+
+                console.log('success ', ajax_file_path);
+
+                clientDom.classList.add('lock-modal');
+
+                if (clientDom !== null) {
+
+                    // === скрыть все предыдущие модалки
+                    let allOverlay = clientDom.querySelectorAll('.overlay');
+                    let allModal = clientDom.querySelectorAll('.modal');
+
+                    allOverlay.forEach(function (element, index) {
+                        element.classList.remove('overlay_active');
+                    });
+
+                    allModal.forEach(function (element, index) {
+                        element.classList.remove('modal_active');
+                    });
+
+                    // === добавить overlay
+                    let overlayDom = clientDom.querySelector('.overlay');
+                    if (overlayDom === null) {
+                        overlayDom = `<div class="overlay overlay_active"></div>`;
+                        clientDom.insertAdjacentHTML('beforeend', overlayDom);
+                    } else {
+                        overlayDom.classList.add('overlay_active');
+                    }
+
+
+                    // === проверить существование нужной модалки
+                    let modalDom = clientDom.querySelector(`.modal[data-modal="${modal_class}"]`);
+                    // === если необходимая модалка не существует в DOM
+                    // добавить ее
+                    if (modalDom === null) {
+
+                        modalDom =
+                            `
+                        <div class="modal theme-modal modal_active" data-modal="${modal_class}">
+
+                            ${html}                               
+
+                        </div>
+                        `;
+                        clientDom.insertAdjacentHTML('beforeend', modalDom);
+                    }
+                    // === если необходимая модалка существует в DOM, показать её
+                    else {
+                        modalDom.classList.add('modal_active');
+                    }
+
+
+                }
+            },
+
+            // === функция-обработчик ошибки
+            onfailure: function (data) {
+
+                // === скрыть Loader
+                BX.closeWait();
+
+                // === показать ошибку в Loader
+                BX.showWait(false, 'error', 'center');
+
+            },
+        });
+
+    }
+
+});

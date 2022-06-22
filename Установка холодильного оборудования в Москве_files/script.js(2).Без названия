@@ -1,0 +1,61 @@
+'use strict';
+
+jQuery(document).ready(function () {
+  // $("#my-menu").mmenu({
+  //   extensions: ['pagedim-black', 'position-left', 'fullscreen'],
+  //   navbar: {
+  //     title: "ТехАвеню"
+  //   },
+  //   "navbars": [
+  //     {
+  //       "position": "top",
+  //       "content": [`<div class="mmenu-logo"><img src="./img/logo.png" alt=""></div>`, "close"]
+  //     }, {
+  //       "position": "top",
+  //       "content": [
+  //         `<div class="mmenu-top">
+
+  //         </div>`
+  //       ]
+  //     }, {
+  //       "position": "bottom",
+  //       "content": [
+  //         `<div class="mmenu-bottom"></div>`
+  //       ]
+  //     }
+  //   ]
+
+  // },
+
+  //   {
+  //     offCanvas: {
+  //       pageSelector: "#my-wrapper"
+  //     }
+  //   });
+
+  // var $menu = $("#my-menu")
+  // var $icon = $("#my-icon");
+  // var API = $menu.data("mmenu");
+
+  // $icon.on("click", function () {
+  //   API.open();
+  // });
+
+  // API.bind("open:finish", function () {
+  //   setTimeout(function () {
+  //     $icon.addClass("is-active");
+  //     $("html").addClass("lock");
+  //   }, 100);
+  // });
+  // API.bind("close:finish", function () {
+  //   setTimeout(function () {
+  //     $icon.removeClass("is-active");
+  //     $("html").removeClass("lock");
+  //   }, 100);
+  // });
+
+  // $(".mmenu-top").append($(".btns").clone(true, true));
+  // $(".mmenu-bottom").append($(".header-contacts .call-link").clone(true, true));
+  // $(".mmenu-bottom").append($(".menu-contacts .tel").clone(true, true));
+
+})

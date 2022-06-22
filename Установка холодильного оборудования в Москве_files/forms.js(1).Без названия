@@ -1,0 +1,119 @@
+'use strict';
+
+
+
+jQuery(document).on('click', '[data-entity="popup"]', function (e) {
+	e.stopPropagation();
+	e.preventDefault();
+
+	if(window.oPopup) {
+		window.oPopup.close();
+	}
+
+	let wait = BX.showWait('open_form'),
+		action = jQuery(this).attr('data-action');
+
+	window.oPopup = BX.PopupWindowManager.create(`form-popp__${action}`, null, {
+		autoHide: true,
+		offsetTop: 0,
+		offsetLeft: 0,
+		zIndex: 1000,
+		overlay: true,
+		lightShadow: true,
+		draggable: {restrict: false},
+		closeIcon: true,
+		closeByEsc: true,
+		titleBar: true,
+		events: {
+			onPopupClose: function (PopupWindow) {
+				PopupWindow.destroy();
+			}
+		}
+	});
+
+	BX.ajax({
+		url: `${window.templatePath}/ajax/forms.php`,
+		method: 'POST',
+		dataType: 'html',
+		data: { action: `${action}` },
+		async: true,
+		processData: true,
+		scriptsRunFirst: true,
+		emulateOnload: true,
+		start: true,
+		cache: false,
+		onsuccess: function (data) {
+			let html = BX.processHTML(data, false);
+			window.oPopup.setTitleBar(jQuery(data).find('.form__title').html());
+			window.oPopup.setContent(html.HTML);
+			window.oPopup.show();
+			jQuery('[data-id="telephone"], [name="form_text_6"], [name="form_text_29"], [name="form_text_2"], [name="form_text_8"], [name="form_text_40"]').mask("+7 (999) 999-9999");
+			if(jQuery('[data-id="page_url"]').length > 0){
+				jQuery('[data-id="page_url"]').val(window.location.origin + window.location.pathname);
+			}
+			
+		},
+		onfailure: function (data) {
+			console.log(data);
+		}
+	});
+
+	BX.closeWait('open_form', wait);
+
+});
+
+jQuery(document).on('click', '[data-entity="popup-authorization"]', function (e) {
+	e.stopPropagation();
+	e.preventDefault();
+
+	if(window.oPopup) {
+		window.oPopup.close();
+	}
+
+	let wait = BX.showWait('open_form'),
+		action = jQuery(this).attr('data-action');
+
+	window.oPopup = BX.PopupWindowManager.create(`form-popp__${action}`, null, {
+		className: 'authorization-popup-window fade-in',
+		autoHide: true,
+		offsetTop: 0,
+		offsetLeft: 0,
+		zIndex: 1000,
+		lightShadow: true,
+		draggable: true,
+		closeIcon: true,
+		closeByEsc: true,
+		overlay: true,
+		titleBar: false,
+		events: {
+			onPopupClose: function (PopupWindow) {
+				PopupWindow.destroy();
+			}
+		}
+	});
+
+	BX.ajax({
+		url: `${window.templatePath}/ajax/authorization.php`,
+		method: 'POST',
+		dataType: 'html',
+		data: { action: `${action}` },
+		async: true,
+		processData: true,
+		scriptsRunFirst: true,
+		emulateOnload: true,
+		start: true,
+		cache: false,
+		onsuccess: function (data) {
+			let html = BX.processHTML(data, false);
+			window.oPopup.setContent('<div class="popup-authorization-wrap">' + html.HTML + '</div>');
+			window.oPopup.show();
+			jQuery('[type="tel"]').mask("+7 (999) 999-9999");
+		},
+		onfailure: function (data) {
+			console.log(data);
+		}
+	});
+
+	BX.closeWait('open_form', wait);
+
+});

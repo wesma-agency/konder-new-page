@@ -1,0 +1,150 @@
+'use script';
+
+
+
+jQuery(document).ready(function () {
+
+  jQuery(document).on("click", '.catalog-drop', function (e) {
+    e.stopPropagation();
+    if ($(".drop-menu").hasClass("active")) {
+      setTimeout(() => {
+        $(".drop-menu").removeClass("active");
+        $(".drop-menu-overlay").removeClass("active");
+      }, 200)
+      $(".drop-menu").css({ "transform": "translate(-100%, 0)" });
+
+    } else {
+      $(".drop-menu").addClass("active");
+      $(".drop-menu-overlay").addClass("active");
+      setTimeout(() => {
+        $(".drop-menu").css({ "transform": "translate(0, 0)" });
+      }, 200)
+    }
+  });
+
+  jQuery(document).on("click", '.drop-menu__close', function (e) {
+    setTimeout(() => {
+      $(".drop-menu").removeClass("active");
+      $(".drop-menu-overlay").removeClass("active");
+    }, 200)
+    $(".drop-menu").css({ "transform": "translate(-100%, 0)" });
+  })
+
+
+
+  jQuery(".drop-menu__item-one").hover(function () {
+    jQuery(".drop-menu__item-one").removeClass("current");
+    jQuery(this).addClass("current");
+
+    jQuery(".drop-menu__list-two").removeClass("current");
+    
+    jQuery("#" + jQuery(this).attr("data-code")).addClass("current");
+
+    // jQuery(".drop-menu__list-two").eq(jQuery(this).index()).addClass("current");
+  });
+
+  jQuery(document).on("click", '.drop-menu-overlay', function (e) {
+    e.stopPropagation();
+
+    $(".drop-menu").css({ "transform": "translate(-100%, 0)" });
+
+    setTimeout(() => {
+      $(".drop-menu-overlay").removeClass("active");
+      $(".drop-menu").removeClass("active");
+    }, 200)
+  });
+
+  function getMinValue(array) {
+    var min = array[0];
+    for (var i = 0; i < array.length; i++) {
+      if (min > array[i]) min = array[i];
+    }
+    return min;
+  }
+
+  let arrListMenu = Array.prototype.slice.call(document.querySelectorAll(".drop-menu__list-two"));
+
+  arrListMenu.forEach((element, i) => {
+    let arrListMenuElOneLevel = Array.prototype.slice.call(element.querySelectorAll(".drop-menu__item-two"));
+
+    let elList1 = document.createElement("li");
+    let elItem1 = document.createElement("ul");
+    elList1.append(elItem1);
+    elList1.classList.add("js-drop-menu-list-two");
+
+    let elList2 = document.createElement("li");
+    let elItem2 = document.createElement("ul");
+    elList2.append(elItem2);
+    elList2.classList.add("js-drop-menu-list-two");
+
+    let elList3 = document.createElement("li");
+    let elItem3 = document.createElement("ul");
+    elList3.append(elItem3);
+    elList3.classList.add("js-drop-menu-list-two");
+
+    let elHeight = [0, 0, 0];
+
+    arrListMenuElOneLevel.forEach((element, i) => {
+      let arrListMenuElTwoLevel = Array.prototype.slice.call(element.querySelectorAll(".drop-menu__subitem"));
+
+      if (arrListMenuElTwoLevel.length > 5) {
+
+        let viewMoreButton = document.createElement("div");
+
+        viewMoreButton.textContent = "Смотреть все"
+
+        viewMoreButton.classList.add("view-all-button");
+
+        viewMoreButton.addEventListener("click", function () {
+          this.parentNode.parentNode.querySelector(".sub-menu-full").classList.add("active")
+        })
+
+        arrListMenuElTwoLevel[0].parentNode.append(viewMoreButton);
+
+        let menuSubCat = document.createElement("div");
+        menuSubCat.classList.add("sub-menu-full")
+
+        let backMenu = document.createElement("div");
+        backMenu.classList.add("back-menu")
+        backMenu.textContent = "назад"
+        menuSubCat.append(backMenu);
+
+        backMenu.addEventListener("click", function () {
+          this.parentNode.parentNode.querySelector(".sub-menu-full").classList.remove("active")
+        })
+
+        for (let i = 0; i < arrListMenuElTwoLevel.length; i++) {
+          menuSubCat.append(arrListMenuElTwoLevel[i].cloneNode(true));
+          if (i > 4) {
+            arrListMenuElTwoLevel[i].classList.add("hidden");
+          }
+        }
+
+        element.append(menuSubCat)
+      }
+
+      switch (elHeight.indexOf(getMinValue(elHeight))) {
+        case 0: {
+          elHeight[elHeight.indexOf(getMinValue(elHeight))] += 1;
+          elItem1.append(element);
+          break
+        }
+
+        case 1: {
+          elHeight[elHeight.indexOf(getMinValue(elHeight))] += 1;
+          elItem2.append(element);
+          break
+        }
+
+        case 2: {
+          elHeight[elHeight.indexOf(getMinValue(elHeight))] += 1;
+          elItem3.append(element);
+          break
+        }
+      }
+    })
+    element.append(elList1);
+    element.append(elList2);
+    element.append(elList3);
+  });
+});

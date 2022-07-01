@@ -831,11 +831,11 @@ button[type="submit"].form-service-price__btn {
 	transition: all 0.3s ease;
 }
 
-.quiz-service__question:nth-child(3) .quiz-item-two__wrap {
+.quiz-service__slider .swiper-slide:nth-child(3) .quiz-service__question .quiz-item-two__wrap {
 	padding: 36px 24px;
 }
 
-.quiz-service__question:nth-child(3) .quiz-item-two__name {
+.quiz-service__slider .swiper-slide:nth-child(3) .quiz-service__question .quiz-item-two__name {
 	font-weight: 700;
 }
 

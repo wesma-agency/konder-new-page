@@ -16,6 +16,9 @@
 		href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
 		rel="stylesheet">
 
+	<link rel="stylesheet" href="./new-css/swiper-bundle-8.1.5.css">
+	<script src="./new-js/swiper-bundle-8.1.5.js"></script>
+
 	<link rel="stylesheet" href="./new-css/new-style.css">
 	<script src="./new-js/new-script.js"></script>
 
@@ -17660,29 +17663,188 @@
 					на услуги специалиста!
 				</div>
 
-				<div class="service-price__subtitle">Введите свои данные, что бы мы могли с вами связаться</div>
+				<div class="service-price__quiz quiz-service">
+					<form class="quiz-service__form">
+						<div class="quiz-service__block">
 
-				<form class="service-price__form form-service-price">
-					<div class="form-service-price__list">
-						<div class="form-service-price__item wrap-input --type-2">
-							<div class="wrap-input__name">Ваше имя*</div>
-							<input type="text" class="wrap-input__input">
+							<div class="quiz-service__slider swiper">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide">
+										<div class="quiz-service__question js-quiz-container">
+											<div class="quiz-service__subtitle">Какие виды работ Вам необходимы</div>
+
+											<div class="quiz-service__list --col-3">
+												<label class="quiz-service__item quiz-item-one js-quiz-question">
+													<input type="radio" name="quiz-question-1">
+													<div class="quiz-item-one__wrap">
+														<div class="quiz-item-one__icon">
+															<img src="./new-img/icon-quiz-question-1.png" alt="">
+														</div>
+
+														<div class="quiz-item-one__name">Установка</div>
+													</div>
+												</label>
+
+												<label class="quiz-service__item quiz-item-one js-quiz-question">
+													<input type="radio" name="quiz-question-1">
+													<div class="quiz-item-one__wrap">
+														<div class="quiz-item-one__icon">
+															<img src="./new-img/icon-quiz-question-2.png" alt="">
+														</div>
+
+														<div class="quiz-item-one__name">Установка +оборудование</div>
+													</div>
+												</label>
+
+												<label class="quiz-service__item quiz-item-one js-quiz-question">
+													<input type="radio" name="quiz-question-1">
+													<div class="quiz-item-one__wrap">
+														<div class="quiz-item-one__icon">
+															<img src="./new-img/icon-quiz-question-3.png" alt="">
+														</div>
+
+														<div class="quiz-item-one__name">Не знаю</div>
+													</div>
+												</label>
+											</div>
+
+											<div class="quiz-service__next js-quiz-next">Далее</div>
+										</div>
+									</div>
+
+									<div class="swiper-slide">
+										<div class="quiz-service__question js-quiz-container">
+											<div class="quiz-service__subtitle">Вид монтируемого или приобретаемого
+												фанкойла</div>
+
+											<div class="quiz-service__list">
+
+												<label class="quiz-service__item quiz-item-two js-quiz-question">
+													<input type="radio" name="quiz-question-2">
+													<div class="quiz-item-two__wrap">
+														<div class="quiz-item-two__icon">
+															<img src="./new-img/icon-quiz-question-two-1.png" alt="">
+														</div>
+
+														<div class="quiz-item-two__name">НАСТЕННЫЙ</div>
+													</div>
+												</label>
+
+												<label class="quiz-service__item quiz-item-two js-quiz-question">
+													<input type="radio" name="quiz-question-2">
+													<div class="quiz-item-two__wrap">
+														<div class="quiz-item-two__icon">
+															<img src="./new-img/icon-quiz-question-two-2.png" alt="">
+														</div>
+
+														<div class="quiz-item-two__name">КАССЕТНЫЙ</div>
+													</div>
+												</label>
+
+												<label class="quiz-service__item quiz-item-two js-quiz-question">
+													<input type="radio" name="quiz-question-2">
+													<div class="quiz-item-two__wrap">
+														<div class="quiz-item-two__icon">
+															<img src="./new-img/icon-quiz-question-two-3.png" alt="">
+														</div>
+
+														<div class="quiz-item-two__name">КАНАЛЬНЫЙ</div>
+													</div>
+												</label>
+
+												<label class="quiz-service__item quiz-item-two js-quiz-question">
+													<input type="radio" name="quiz-question-2">
+													<div class="quiz-item-two__wrap">
+														<div class="quiz-item-two__icon">
+															<img src="./new-img/icon-quiz-question-two-4.png" alt="">
+														</div>
+
+														<div class="quiz-item-two__name">Не знаю</div>
+													</div>
+												</label>
+
+											</div>
+
+											<div class="quiz-service__next js-quiz-next">Далее</div>
+										</div>
+									</div>
+
+									<div class="swiper-slide">
+										<div class="quiz-service__question js-quiz-container">
+											<div class="quiz-service__subtitle">Мощность фанкойла</div>
+
+											<div class="quiz-service__list">
+
+												<label class="quiz-service__item quiz-item-two js-quiz-question">
+													<input type="radio" name="quiz-question-2">
+													<div class="quiz-item-two__wrap">
+														<div class="quiz-item-two__name">До 5 кВТ</div>
+													</div>
+												</label>
+
+												<label class="quiz-service__item quiz-item-two js-quiz-question">
+													<input type="radio" name="quiz-question-2">
+													<div class="quiz-item-two__wrap">
+														<div class="quiz-item-two__name">5-8 кВТ</div>
+													</div>
+												</label>
+
+												<label class="quiz-service__item quiz-item-two js-quiz-question">
+													<input type="radio" name="quiz-question-2">
+													<div class="quiz-item-two__wrap">
+														<div class="quiz-item-two__name">От 8 кВТ</div>
+													</div>
+												</label>
+
+												<label class="quiz-service__item quiz-item-two js-quiz-question">
+													<input type="radio" name="quiz-question-2">
+													<div class="quiz-item-two__wrap">
+														<div class="quiz-item-two__name">Не знаю</div>
+													</div>
+												</label>
+
+											</div>
+
+											<div class="quiz-service__next js-quiz-next">Далее</div>
+										</div>
+									</div>
+
+									<div class="swiper-slide">
+										<div class="quiz-service__question js-quiz-question">
+											<div class="quiz-service__subtitle">Введите свои данные, что бы мы могли с
+												вами
+												связаться</div>
+
+											<div class="quiz-service__form-list form-service-price">
+												<div class="form-service-price__list">
+													<div class="form-service-price__item wrap-input --type-2">
+														<div class="wrap-input__name">Ваше имя*</div>
+														<input type="text" class="wrap-input__input">
+													</div>
+
+													<div class="form-service-price__item wrap-input --type-2">
+														<div class="wrap-input__name">Номер телефона*</div>
+														<input type="tel" class="wrap-input__input js-phone-mask">
+													</div>
+
+													<div class="form-service-price__item wrap-input --type-2">
+														<div class="wrap-input__name">Email</div>
+														<input type="text" class="wrap-input__input">
+													</div>
+												</div>
+
+												<button type="submit" class="form-service-price__btn">Отправить</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
 						</div>
 
-						<div class="form-service-price__item wrap-input --type-2">
-							<div class="wrap-input__name">Номер телефона*</div>
-							<input type="tel" class="wrap-input__input js-phone-mask">
-						</div>
+					</form>
 
-						<div class="form-service-price__item wrap-input --type-2">
-							<div class="wrap-input__name">Email</div>
-							<input type="text" class="wrap-input__input">
-						</div>
-					</div>
-
-					<button type="submit" class="form-service-price__btn">Отправить</button>
-
-				</form>
+				</div>
 
 			</div>
 		</section>

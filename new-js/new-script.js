@@ -34,4 +34,34 @@ document.addEventListener("DOMContentLoaded", function () {
 			});
 		});
 	}
+
+	//////////////////////////////////////////////////////////////////
+
+	let sldierQuiz = new Swiper(".quiz-service__slider", {
+		slidesPerView: 1,
+		watchOverflow: true,
+		spaceBetween: 200,
+		autoHeight: true,
+		allowTouchMove: false,
+	});
+
+	let arrQuizContainer = document.querySelectorAll(".js-quiz-container");
+
+	if (arrQuizContainer.length > 0) {
+		arrQuizContainer.forEach((element) => {
+			let arrQuizQuestion = element.querySelectorAll(".js-quiz-question");
+			let buttonNext = element.querySelector(".js-quiz-next");
+			if (buttonNext != null) {
+				buttonNext.addEventListener("click", function () {
+					arrQuizQuestion.forEach((el) => {
+						let input = el.querySelector("input[type='radio']");
+
+						if (input.checked) {
+							sldierQuiz.slideNext();
+						}
+					});
+				});
+			}
+		});
+	}
 });
